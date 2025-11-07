@@ -23,7 +23,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " rust.vim options
@@ -31,7 +32,7 @@ let g:rustfmt_autosave=1
 
 " ale options
 let g:ale_linters={
-\	'rust': ['analyzer', 'cargo'],
+\'rust': ['analyzer', 'cargo'],
 \}
 
 let g:ale_fixers={
@@ -49,3 +50,13 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " vim-airline options
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='deus'
+
+" nerdtree options
+let g:NERDTreeFileLines = 1
+let g:NERDTreeWinPos = "right"
+nnoremap <C-o> :NERDTreeToggle<CR>
+" Start NERDTree while opening Vim and put cursor on file
+autocmd VimEnter * NERDTree | wincmd p 
+" Close NERDTree automatically if it's the last thing on screen
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
+
