@@ -16,6 +16,10 @@ set ignorecase
 " text rendering options
 set encoding=utf-8
 
+" templates options
+autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+
+
 " plugins
 call plug#begin()
 Plug 'rust-lang/rust.vim'
@@ -36,6 +40,7 @@ filetype plugin indent on
 let g:ale_fix_on_save=1
 let g:ale_linters={
 \		'rust': ['analyzer', 'cargo'],
+\		'latex': ['textlint'],
 \}
 
 let g:ale_fixers={
